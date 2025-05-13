@@ -7,23 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000C09A6E5064CDAA9185422 /* Inter_18pt-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 294DCEBAC8F945B49160D731 /* Inter_18pt-Thin.ttf */; };
+		0946151A9AA548FE90BF74CA /* Inter_24pt-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64A26A9101364E8E809766E2 /* Inter_24pt-Black.ttf */; };
 		0C80B921A6F3F58F76C31292 /* libPods-UnveilingBayernHeritage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-UnveilingBayernHeritage.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		216E97FFFE944E3C8720E91B /* Inter_18pt-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A1F584973A44C5AA716DC6 /* Inter_18pt-Black.ttf */; };
+		2223EBEEC3AB471A8E359B88 /* Inter_18pt-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A5561A2A28A455AAAACC7FC /* Inter_18pt-Bold.ttf */; };
+		300C077EA16A495FB18D43C7 /* Inter_18pt-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBAEB85B6C5F4D5CA9ED265D /* Inter_18pt-Light.ttf */; };
+		74D4D07AE1A140DEB0CF814C /* Inter_18pt-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 087B3E5EA3624E34BD6A5532 /* Inter_18pt-Regular.ttf */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		BAA3648A4E864504BCB2679D /* Inter_18pt-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DED8393A49543D08E29AB6D /* Inter_18pt-Medium.ttf */; };
+		BEDE9272AE16450EB9FCC8FC /* Inter_18pt-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E70C0C3DB1E64C6FB2825E8D /* Inter_18pt-SemiBold.ttf */; };
 		D06AC79D8DB1952751B0BF31 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04A1F584973A44C5AA716DC6 /* Inter_18pt-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_18pt-Black.ttf"; path = "../src/assets/fonts/Inter_18pt-Black.ttf"; sourceTree = "<group>"; };
+		087B3E5EA3624E34BD6A5532 /* Inter_18pt-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_18pt-Regular.ttf"; path = "../src/assets/fonts/Inter_18pt-Regular.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* UnveilingBayernHeritage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnveilingBayernHeritage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = UnveilingBayernHeritage/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = UnveilingBayernHeritage/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = UnveilingBayernHeritage/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		294DCEBAC8F945B49160D731 /* Inter_18pt-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_18pt-Thin.ttf"; path = "../src/assets/fonts/Inter_18pt-Thin.ttf"; sourceTree = "<group>"; };
+		2A5561A2A28A455AAAACC7FC /* Inter_18pt-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_18pt-Bold.ttf"; path = "../src/assets/fonts/Inter_18pt-Bold.ttf"; sourceTree = "<group>"; };
+		2DED8393A49543D08E29AB6D /* Inter_18pt-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_18pt-Medium.ttf"; path = "../src/assets/fonts/Inter_18pt-Medium.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-UnveilingBayernHeritage.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnveilingBayernHeritage.debug.xcconfig"; path = "Target Support Files/Pods-UnveilingBayernHeritage/Pods-UnveilingBayernHeritage.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-UnveilingBayernHeritage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnveilingBayernHeritage.release.xcconfig"; path = "Target Support Files/Pods-UnveilingBayernHeritage/Pods-UnveilingBayernHeritage.release.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-UnveilingBayernHeritage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UnveilingBayernHeritage.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		64A26A9101364E8E809766E2 /* Inter_24pt-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_24pt-Black.ttf"; path = "../src/assets/fonts/Inter_24pt-Black.ttf"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = UnveilingBayernHeritage/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = UnveilingBayernHeritage/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CBAEB85B6C5F4D5CA9ED265D /* Inter_18pt-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_18pt-Light.ttf"; path = "../src/assets/fonts/Inter_18pt-Light.ttf"; sourceTree = "<group>"; };
+		E70C0C3DB1E64C6FB2825E8D /* Inter_18pt-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter_18pt-SemiBold.ttf"; path = "../src/assets/fonts/Inter_18pt-SemiBold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -39,6 +55,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1033B4F478C3474B86954338 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				04A1F584973A44C5AA716DC6 /* Inter_18pt-Black.ttf */,
+				2A5561A2A28A455AAAACC7FC /* Inter_18pt-Bold.ttf */,
+				CBAEB85B6C5F4D5CA9ED265D /* Inter_18pt-Light.ttf */,
+				2DED8393A49543D08E29AB6D /* Inter_18pt-Medium.ttf */,
+				087B3E5EA3624E34BD6A5532 /* Inter_18pt-Regular.ttf */,
+				E70C0C3DB1E64C6FB2825E8D /* Inter_18pt-SemiBold.ttf */,
+				294DCEBAC8F945B49160D731 /* Inter_18pt-Thin.ttf */,
+				64A26A9101364E8E809766E2 /* Inter_24pt-Black.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* UnveilingBayernHeritage */ = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +107,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				1033B4F478C3474B86954338 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -161,6 +194,14 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				D06AC79D8DB1952751B0BF31 /* PrivacyInfo.xcprivacy in Resources */,
+				216E97FFFE944E3C8720E91B /* Inter_18pt-Black.ttf in Resources */,
+				2223EBEEC3AB471A8E359B88 /* Inter_18pt-Bold.ttf in Resources */,
+				300C077EA16A495FB18D43C7 /* Inter_18pt-Light.ttf in Resources */,
+				BAA3648A4E864504BCB2679D /* Inter_18pt-Medium.ttf in Resources */,
+				74D4D07AE1A140DEB0CF814C /* Inter_18pt-Regular.ttf in Resources */,
+				BEDE9272AE16450EB9FCC8FC /* Inter_18pt-SemiBold.ttf in Resources */,
+				000C09A6E5064CDAA9185422 /* Inter_18pt-Thin.ttf in Resources */,
+				0946151A9AA548FE90BF74CA /* Inter_24pt-Black.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,7 +314,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.unveiling.bayern.heritage.app;
 				PRODUCT_NAME = UnveilingBayernHeritage;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -300,7 +341,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.unveiling.bayern.heritage.app;
 				PRODUCT_NAME = UnveilingBayernHeritage;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
