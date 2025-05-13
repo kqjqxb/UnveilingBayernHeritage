@@ -21,7 +21,7 @@ const SweetSettingsScreen = ({
     setSweetVibrOn
 }) => {
     const dimensions = Dimensions.get('window');
-    const styles = sweetStyles(dimensions);
+    const styles = unveilingMainStyles(dimensions);
 
     const sweetSaveSettings = async (key, value) => {
         try {
@@ -97,7 +97,7 @@ const SweetSettingsScreen = ({
     );
 };
 
-const sweetStyles = (dimensions) => StyleSheet.create({
+const unveilingMainStyles = (dimensions) => StyleSheet.create({
     header: {
         width: '90%',
         height: dimensions.height * 0.07,

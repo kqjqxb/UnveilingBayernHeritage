@@ -17,7 +17,7 @@ const fontMontserratRegular = 'Montserrat-Regular';
 
 const SweetSavedScreen = ({ sweetFavTasks, setSweetFavTasks }) => {
     const dimensions = Dimensions.get('window');
-    const styles = sweetStyles(dimensions);
+    const styles = unveilingMainStyles(dimensions);
 
     return (
         <SafeAreaView style={{ width: dimensions.width, height: dimensions.height }}>
@@ -165,7 +165,7 @@ const SweetSavedScreen = ({ sweetFavTasks, setSweetFavTasks }) => {
     );
 };
 
-const sweetStyles = (dimensions) => StyleSheet.create({
+const unveilingMainStyles = (dimensions) => StyleSheet.create({
     header: {
         width: '90%',
         height: dimensions.height * 0.07,

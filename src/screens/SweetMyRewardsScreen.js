@@ -23,7 +23,7 @@ const formatSweetDate = (dateString) => {
 
 const SweetMyRewardsScreen = ({ userRewards }) => {
     const dimensions = Dimensions.get('window');
-    const styles = sweetStyles(dimensions);
+    const styles = unveilingMainStyles(dimensions);
 
     return (
         <SafeAreaView style={{ width: dimensions.width, height: dimensions.height }}>
@@ -126,7 +126,7 @@ const SweetMyRewardsScreen = ({ userRewards }) => {
     );
 };
 
-const sweetStyles = (dimensions) => StyleSheet.create({
+const unveilingMainStyles = (dimensions) => StyleSheet.create({
     header: {
         width: '90%',
         height: dimensions.height * 0.07,
