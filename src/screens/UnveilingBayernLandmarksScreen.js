@@ -1,21 +1,15 @@
 import React from 'react';
 import {
-    View,
     Text,
     Dimensions,
     SafeAreaView,
-    StyleSheet,
     TouchableOpacity,
-    Share,
     Image
 } from 'react-native';
 import { ChevronRightIcon } from 'react-native-heroicons/solid';
 
-const fontMontserratRegular = 'Montserrat-Regular';
-
-const BayernLandmarksScreen = ({ setChoosedSweetScreen }) => {
+const UnveilingBayernLandmarksScreen = ({ setChoosedSweetScreen }) => {
     const dimensions = Dimensions.get('window');
-    const styles = unveilingMainStyles(dimensions);
 
     return (
         <SafeAreaView style={{ width: dimensions.width, height: dimensions.height }}>
@@ -27,6 +21,7 @@ const BayernLandmarksScreen = ({ setChoosedSweetScreen }) => {
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     alignSelf: 'center',
+                    marginTop: dimensions.height * 0.01,
                 }}
                 onPress={() => {
                     setChoosedSweetScreen('Home');
@@ -80,23 +75,4 @@ const BayernLandmarksScreen = ({ setChoosedSweetScreen }) => {
     );
 };
 
-const unveilingMainStyles = (dimensions) => StyleSheet.create({
-    header: {
-        width: '90%',
-        height: dimensions.height * 0.07,
-        backgroundColor: '#5C2E45',
-        borderRadius: dimensions.width * 0.04,
-        alignItems: 'flex-start',
-        justifyContent: 'center',
-        paddingHorizontal: dimensions.width * 0.05,
-        alignSelf: 'center',
-    },
-    montserratText: {
-        color: 'white',
-        textAlign: 'center',
-        alignSelf: 'center',
-        fontFamily: fontMontserratRegular,
-    },
-});
-
-export default BayernLandmarksScreen;
+export default UnveilingBayernLandmarksScreen;

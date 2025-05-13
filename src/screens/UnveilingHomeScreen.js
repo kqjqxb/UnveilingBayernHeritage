@@ -14,12 +14,14 @@ import {
 import SweetSettingsScreen from './SweetSettingsScreen';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import BayernLandmarksScreen from './BayernLandmarksScreen';
+import UnveilingBayernLandmarksScreen from './UnveilingBayernLandmarksScreen';
 import SweetSavedScreen from './SweetSavedScreen';
 import SweetMyRewardsScreen from './SweetMyRewardsScreen';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import sweetTasksData from '../components/sweetTasksData';
 import sweetRewards from '../components/sweetRewards';
+import { ChevronRightIcon } from 'react-native-heroicons/solid';
+import LinearGradient from 'react-native-linear-gradient';
 
 const unvBottomButtons = [
   {
@@ -391,9 +393,189 @@ const UnveilingHomeScreen = () => {
         <SafeAreaView style={{
           flex: 1,
           alignItems: 'center',
-          marginTop: Platform.OS === 'android' ? dimensions.height * 0.03 : 0,
+          // marginTop: Platform.OS === 'android' ? dimensions.height * 0.03 : 0,
         }}>
-          
+          <TouchableOpacity
+            activeOpacity={1}
+            style={{
+              width: '91%',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              alignSelf: 'center',
+              marginTop: dimensions.height * 0.01,
+            }}
+            onPress={() => {
+              setChoosedSweetScreen('Home');
+            }}
+          >
+            <Text style={{
+              fontSize: dimensions.width * 0.05,
+              fontWeight: '700',
+              color: 'white'
+            }}>
+              Castles and Fortresses
+            </Text>
+
+            <ChevronRightIcon color='white' size={dimensions.height * 0.03} />
+          </TouchableOpacity>
+
+          <View style={{
+            height: dimensions.height * 0.14,
+          }}>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{
+              alignSelf: 'center',
+              marginTop: dimensions.height * 0.03
+            }}
+            >
+              {[1, 2, 3].map((category, index) => (
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                style={{
+                  height: dimensions.height * 0.08,
+                  justifyContent: 'space-between',
+                  paddingHorizontal: dimensions.width * 0.02,
+                  borderRadius: dimensions.width * 0.1,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginLeft: dimensions.width * 0.05,
+                }}>
+                  <LinearGradient
+                    style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, borderRadius: dimensions.width * 0.1 }}
+                    colors={['#454545', '#848484']}
+                    start={{ x: 0.5, y: 1 }}
+                    end={{ x: 0.5, y: 0 }}
+                  />
+
+                  <Image
+                    source={require('../assets/images/image1.png')}
+                    style={{
+                      width: dimensions.height * 0.06,
+                      height: dimensions.height * 0.06,
+                      borderRadius: dimensions.width * 0.1,
+                      zIndex: 1,
+                    }}
+                    resizeMode="cover"
+                  />
+
+                  <Text
+                    style={{
+                      color: 'white',
+                      textAlign: 'left',
+                      paddingLeft: dimensions.width * 0.03,
+                      fontSize: dimensions.width * 0.035,
+                      maxWidth: dimensions.width * 0.4,
+                    }}
+                    numberOfLines={2}
+                  >
+                    Neuschwanstein Castle
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </View>
+
+          <View style={{
+            alignSelf: 'center',
+            width: dimensions.width * 0.91,
+            height: dimensions.height * 0.55,
+          }}>
+            <Image
+              source={require('../assets/images/image1.png')}
+              style={{
+                width: dimensions.width * 0.91,
+                height: dimensions.height * 0.55,
+                borderRadius: dimensions.width * 0.1,
+                position: 'absolute',
+                zIndex: 0,
+              }}
+              resizeMode="cover"
+            />
+
+            <View style={{
+              width: dimensions.width * 0.85,
+              paddingHorizontal: dimensions.width * 0.04,
+              paddingVertical: dimensions.height * 0.03,
+              borderRadius: dimensions.width * 0.05,
+              backgroundColor: 'black',
+              alignSelf: 'center',
+              position: 'absolute',
+              bottom: dimensions.height * 0.02,
+            }}>
+              <Text
+                style={{
+                  color: 'white',
+                  textAlign: 'left',
+                  fontSize: dimensions.width * 0.0555,
+                  fontWeight: '700',
+                }}
+              >
+                Neuschwanstein Castle
+              </Text>
+
+              <Text
+                style={{
+                  color: 'white',
+                  textAlign: 'left',
+                  fontSize: dimensions.width * 0.04,
+                  fontWeight: '700',
+
+                  marginTop: dimensions.height * 0.01,
+                }}
+              >
+                📖 Description:
+              </Text>
+
+              <Text
+                style={{
+                  color: 'white',
+                  textAlign: 'left',
+                  fontSize: dimensions.width * 0.034,
+                  fontWeight: '400',
+
+                  marginTop: dimensions.height * 0.01,
+                  fontStyle: 'italic',
+                }}
+              >
+                This fairy-tale castle, built in the 19th century, is one of the most famous in the world. Neuschwanstein Castle inspired the creation of Sleeping Beauty’s Castle at Disneyland. Visitors can learn about the life of King Ludwig II and his dreams.
+              </Text>
+
+              <View style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                alignSelf: 'flex-start',
+              }}>
+                <Text
+                  style={{
+                    color: 'white',
+                    textAlign: 'left',
+                    fontSize: dimensions.width * 0.04,
+                    fontWeight: '700',
+
+                    marginTop: dimensions.height * 0.01,
+                  }}
+                >
+                  📍 Location: {' '}
+                </Text>
+
+                <Text
+                  style={{
+                    color: 'white',
+                    textAlign: 'left',
+                    fontSize: dimensions.width * 0.034,
+                    fontWeight: '400',
+
+                    marginTop: dimensions.height * 0.01,
+                    fontStyle: 'italic',
+                  }}
+                >
+                  Füssen, Southern Bavaria.
+                </Text>
+              </View>
+            </View>
+          </View>
+
 
         </SafeAreaView>
       ) : choosedSweetScreen === 'Settings' ? (
@@ -407,7 +589,7 @@ const UnveilingHomeScreen = () => {
           setSweetVibrOn={setSweetVibrOn}
         />
       ) : choosedSweetScreen === 'Bayern landmarks' ? (
-        <BayernLandmarksScreen setChoosedSweetScreen={setChoosedSweetScreen} levelPoints={levelPoints} />
+        <UnveilingBayernLandmarksScreen setChoosedSweetScreen={setChoosedSweetScreen} levelPoints={levelPoints} />
       ) : choosedSweetScreen === 'Saved' ? (
         <SweetSavedScreen setChoosedSweetScreen={setChoosedSweetScreen} sweetFavTasks={sweetFavTasks} setSweetFavTasks={setSweetFavTasks} />
       ) : choosedSweetScreen === 'My rewards' ? (
