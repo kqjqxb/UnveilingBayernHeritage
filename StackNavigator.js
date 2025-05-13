@@ -7,8 +7,8 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { UserProvider, UserContext } from './src/context/UserContext';
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
-import SweetAppLoading from './src/screens/SweetAppLoading';
-import EdgeOnboardingOfSweetScreen from './src/screens/EdgeOnboardingOfSweetScreen';
+import UnvelingLoadingPage from './src/screens/UnvelingLoadingPage';
+import OnboardingOfTheUnveilingScreen from './src/screens/OnboardingOfTheUnveilingScreen';
 import { AudioProvider } from './src/context/AudioContext';
 
 const Stack = createNativeStackNavigator();
@@ -32,8 +32,8 @@ const AppNavigator = () => {
     <NavigationContainer>
       <AudioProvider>
         <Stack.Navigator initialRouteName={'SweetLoading'}>
-          <Stack.Screen name="SweetOnboardingSP" component={EdgeOnboardingOfSweetScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="SweetLoading" component={SweetAppLoading} options={{ headerShown: false }} />
+          <Stack.Screen name="SweetOnboardingSP" component={OnboardingOfTheUnveilingScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="SweetLoading" component={UnvelingLoadingPage} options={{ headerShown: false }} />
           <Stack.Screen name="SweetHomeScreenP" component={SweetHomeScreenP} options={{ headerShown: false }} />
         </Stack.Navigator>
       </AudioProvider>

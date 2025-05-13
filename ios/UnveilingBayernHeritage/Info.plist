@@ -49,14 +49,14 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Inter_18pt-Black.ttf</string>
-		<string>Inter_18pt-Bold.ttf</string>
-		<string>Inter_18pt-Light.ttf</string>
-		<string>Inter_18pt-Medium.ttf</string>
-		<string>Inter_18pt-Regular.ttf</string>
-		<string>Inter_18pt-SemiBold.ttf</string>
-		<string>Inter_18pt-Thin.ttf</string>
-		<string>Inter_24pt-Black.ttf</string>
+		<string>Inter-18pt-Black.ttf</string>
+		<string>Inter-18pt-Bold.ttf</string>
+		<string>Inter-18pt-Light.ttf</string>
+		<string>Inter-18pt-Medium.ttf</string>
+		<string>Inter-18pt-Regular.ttf</string>
+		<string>Inter-18pt-SemiBold.ttf</string>
+		<string>Inter-18pt-Thin.ttf</string>
+		<string>Inter-24pt-Black.ttf</string>
 	</array>
 </dict>
 </plist>

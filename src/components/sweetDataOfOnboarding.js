@@ -2,21 +2,16 @@ export default [
   {
     id: 1,
     sweetUpTitle: 'Welcome to Edge of Sweet',
-    sweetDescription: 'Small daily steps, real change.',
+    sweetDescription: 'Discover the hidden treasures of Bayern! Immerse yourself in its history, culture, and architecture.',
   },
   {
     id: 2,
     sweetUpTitle: 'Get 3 tasks each day.',
-    sweetDescription: 'Complete all to unlock a sweet affirmation.',
+    sweetDescription: 'Explore famous festivals, learn facts, and take quizzes to discover more about Bayern.',
   },
   {
     id: 3,
     sweetUpTitle: 'Save What Matters',
-    sweetDescription: 'Save your favorite tasks and revisit them anytime.',
-  },
-  {
-    id: 4,
-    sweetUpTitle: 'Track Your Growth',
-    sweetDescription: 'Level up as you complete days.\nSee your rewards and progress unfold.',
+    sweetDescription: 'Plan your trip to Bayern — choose cities, attractions, and save your routes.',
   },
 ]
