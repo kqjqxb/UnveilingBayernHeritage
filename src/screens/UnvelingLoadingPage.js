@@ -76,7 +76,7 @@ const UnvelingLoadingPage = () => {
   useEffect(() => {
     if (isLoadingUnveilingBefore) {
       const sweetTimer = setTimeout(() => {
-        const destination = isAppWasOpened ? 'SweetOnboardingSP' : 'SweetOnboardingSP';
+        const destination = isAppWasOpened ? 'OnbOfTheUnveiling' : 'OnbOfTheUnveiling';
         navigation.replace(destination);
       }, 5555);
       return () => clearTimeout(sweetTimer);

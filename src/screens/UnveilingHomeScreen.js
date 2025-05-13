@@ -85,7 +85,7 @@ const levels = [
   },
 ]
 
-const SweetHomeScreenP = () => {
+const UnveilingHomeScreen = () => {
   const [dimensions, setDimensions] = useState(Dimensions.get('window'));
   const [choosedSweetScreen, setChoosedSweetScreen] = useState('Home');
 
@@ -992,4 +992,4 @@ const sweetStyles = (dimensions) => StyleSheet.create({
   },
 });
 
-export default SweetHomeScreenP;
+export default UnveilingHomeScreen;

@@ -82,7 +82,7 @@ const OnboardingOfTheUnveilingScreen = () => {
             maxWidth: dimensions.width * 0.8 - dimensions.height * 0.08,
             fontStyle: 'italic',
           }}>
-          {sweetDataOfOnboarding[unveilingSlideId].sweetDescription}
+          {sweetDataOfOnboarding[unveilingSlideId].onveilingOnbButtonText}
         </Text>
 
         <TouchableOpacity style={{
@@ -94,7 +94,7 @@ const OnboardingOfTheUnveilingScreen = () => {
           alignItems: 'center',
         }} onPress={() => {
           if (unveilingSlideId >= sweetDataOfOnboarding.length - 1) {
-            navigation.replace('SweetHomeScreenP');
+            navigation.replace('UnveilingHomeScreen');
           } else {
             setUnveilingSlideId(unveilingSlideId + 1);
           }
