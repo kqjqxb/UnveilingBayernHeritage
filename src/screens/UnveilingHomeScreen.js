@@ -23,6 +23,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import castlesData from '../components/castlesData';
 import residencesData from '../components/residencesData';
 import churchesData from '../components/churchesData';
+import UnveilingPlanScreen from './UnveilingPlanScreen';
 
 const unvBottomButtons = [
   {
@@ -32,7 +33,7 @@ const unvBottomButtons = [
   },
   {
     id: 4,
-    sweetScPage: 'Saved',
+    sweetScPage: 'Plan Bayern Trip',
     sweetScPageImg: require('../assets/icons/homeBottomUnvIcons/unvFestivalsIcon.png'),
   },
   {
@@ -339,8 +340,8 @@ const UnveilingHomeScreen = () => {
         <SweetSettingsScreen setUnveilingScreenNow={setUnveilingScreenNow} />
       ) : unveilingScreenNow === 'Bayern landmarks' ? (
         <UnveilingBayernLandmarksScreen setUnveilingScreenNow={setUnveilingScreenNow} />
-      ) : unveilingScreenNow === 'Saved' ? (
-        <SweetSavedScreen setUnveilingScreenNow={setUnveilingScreenNow} />
+      ) : unveilingScreenNow === 'Plan Bayern Trip' ? (
+        <UnveilingPlanScreen setUnveilingScreenNow={setUnveilingScreenNow} />
       ) : unveilingScreenNow === 'My rewards' ? (
         <SweetMyRewardsScreen setUnveilingScreenNow={setUnveilingScreenNow} />
       ) : null}
