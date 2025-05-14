@@ -25,11 +25,12 @@ import residencesData from '../components/residencesData';
 import churchesData from '../components/churchesData';
 import UnveilingPlanScreen from './UnveilingPlanScreen';
 import UnveilingBayernSettingsScreen from './UnveilingBayernSettingsScreen';
+import UnveilingCastleDefenderScreen from './UnveilingCastleDefenderScreen';
 
 const unvBottomButtons = [
   {
     id: 2,
-    sweetScPage: 'Settings',
+    sweetScPage: 'Castle Defender',
     sweetScPageImg: require('../assets/icons/homeBottomUnvIcons/unvDefenderIcon.png'),
   },
   {
@@ -341,8 +342,8 @@ const UnveilingHomeScreen = () => {
 
 
         </SafeAreaView>
-      ) : unveilingScreenNow === 'Settings' ? (
-        <SweetSettingsScreen setUnveilingScreenNow={setUnveilingScreenNow} />
+      ) : unveilingScreenNow === 'Castle Defender' ? (
+        <UnveilingCastleDefenderScreen setUnveilingScreenNow={setUnveilingScreenNow} />
       ) : unveilingScreenNow === 'Bayern landmarks' ? (
         <UnveilingBayernLandmarksScreen setUnveilingScreenNow={setUnveilingScreenNow} />
       ) : unveilingScreenNow === 'Plan Bayern Trip' ? (
