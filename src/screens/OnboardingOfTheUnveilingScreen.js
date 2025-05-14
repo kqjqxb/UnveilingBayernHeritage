@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Animated, Text, TouchableOpacity, Dimensions, Image, SafeAreaView } from 'react-native';
-import sweetDataOfOnboarding from '../components/sweetDataOfOnboarding';
+import unveilingOnData from '../components/unveilingOnData';
 import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -10,9 +10,6 @@ const OnboardingOfTheUnveilingScreen = () => {
   const [dimensions, setDimensions] = useState(Dimensions.get('window'));
   const [unveilingSlideId, setUnveilingSlideId] = useState(0);
   const navigation = useNavigation();
-
-
-
 
   useEffect(() => {
     const onChange = ({ window }) => {
@@ -82,7 +79,7 @@ const OnboardingOfTheUnveilingScreen = () => {
             maxWidth: dimensions.width * 0.8 - dimensions.height * 0.08,
             fontStyle: 'italic',
           }}>
-          {sweetDataOfOnboarding[unveilingSlideId].onveilingOnbButtonText}
+          {unveilingOnData[unveilingSlideId].onveilingOnbButtonText}
         </Text>
 
         <TouchableOpacity style={{
@@ -93,7 +90,7 @@ const OnboardingOfTheUnveilingScreen = () => {
           justifyContent: 'center',
           alignItems: 'center',
         }} onPress={() => {
-          if (unveilingSlideId >= sweetDataOfOnboarding.length - 1) {
+          if (unveilingSlideId >= unveilingOnData.length - 1) {
             navigation.replace('UnveilingHomeScreen');
           } else {
             setUnveilingSlideId(unveilingSlideId + 1);

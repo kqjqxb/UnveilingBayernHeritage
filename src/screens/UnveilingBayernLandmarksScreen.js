@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { ChevronRightIcon } from 'react-native-heroicons/solid';
 
-const UnveilingBayernLandmarksScreen = ({ setChoosedSweetScreen }) => {
+const UnveilingBayernLandmarksScreen = ({ setUnveilingScreenNow }) => {
     const dimensions = Dimensions.get('window');
 
     return (
@@ -24,7 +24,7 @@ const UnveilingBayernLandmarksScreen = ({ setChoosedSweetScreen }) => {
                     marginTop: dimensions.height * 0.01,
                 }}
                 onPress={() => {
-                    setChoosedSweetScreen('Home');
+                    setUnveilingScreenNow('Home');
                 }}
             >
                 <Text style={{

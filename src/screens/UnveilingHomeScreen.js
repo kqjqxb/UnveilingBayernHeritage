@@ -13,15 +13,16 @@ import {
 } from 'react-native';
 import SweetSettingsScreen from './SweetSettingsScreen';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import UnveilingBayernLandmarksScreen from './UnveilingBayernLandmarksScreen';
 import SweetSavedScreen from './SweetSavedScreen';
 import SweetMyRewardsScreen from './SweetMyRewardsScreen';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
-import sweetTasksData from '../components/sweetTasksData';
-import sweetRewards from '../components/sweetRewards';
 import { ChevronRightIcon } from 'react-native-heroicons/solid';
 import LinearGradient from 'react-native-linear-gradient';
+
+import castlesData from '../components/castlesData';
+import residencesData from '../components/residencesData';
+import churchesData from '../components/churchesData';
 
 const unvBottomButtons = [
   {
@@ -51,336 +52,30 @@ const unvBottomButtons = [
   },
 ]
 
-const levels = [
-  {
-    id: 1,
-    name: 'Level 1',
-    image: require('../assets/images/levels/level1.png'),
-  },
-  {
-    id: 2,
-    name: 'Level 2',
-    image: require('../assets/images/levels/level2.png'),
-  },
-  {
-    id: 3,
-    name: 'Level 3',
-    image: require('../assets/images/levels/level3.png'),
-  },
-  {
-    id: 4,
-    name: 'Level 4',
-    image: require('../assets/images/levels/level4.png'),
-  },
-  {
-    id: 5,
-    name: 'Level 5',
-    image: require('../assets/images/levels/level5.png'),
-  },
-]
-
 const UnveilingHomeScreen = () => {
   const [dimensions, setDimensions] = useState(Dimensions.get('window'));
-  const [choosedSweetScreen, setChoosedSweetScreen] = useState('Home');
+  const [unveilingScreenNow, setUnveilingScreenNow] = useState('Home');
+  const [isFullScreenImage, setIsFullScreenImage] = useState(false);
+  const [selectedBuildingsCategory, setSelectedBuildingsCategory] = useState('Castles and Fortresses');
 
-  const [isSweetMusicOn, setSweetMusicOn] = useState(true);
-  const [isSweetNotificationsOn, setSweetNotificationsOn] = useState(true);
-  const [isSweetVibrOn, setSweetVibrOn] = useState(true);
-
-  const [isTasksVisible, setIsTasksVisible] = useState(false);
-  const [userRewards, setUserRewards] = useState([]);
-  const [notAvailableRewards, setNotAvailableRewards] = useState([]);
-  const [currentReward, setCurrentReward] = useState(null);
-  const [levelPoints, setLevelPoints] = useState(0);
-
-  const [sweetTasks, setSweetTasks] = useState(null);
-  const [isSweetTaskAvailable, setIsSweetTaskAvailable] = useState(true);
-  const [sweetFavTasks, setSweetFavTasks] = useState([]);
-
-  const [lastCompletedTaskTime, setLastCompletedTaskTime] = useState(null);
-
-  useEffect(() => {
-    const loadFavTasks = async () => {
-      try {
-        const storedFav = await AsyncStorage.getItem('sweetFavTasks');
-        if (storedFav) {
-          setSweetFavTasks(JSON.parse(storedFav));
-        }
-      } catch (error) {
-        console.error('Error loading sweetFavTasks:', error);
-      }
-    };
-    loadFavTasks();
-  }, [choosedSweetScreen]);
-
-  useEffect(() => {
-    const loadLastTaskTime = async () => {
-      try {
-        const storedTime = await AsyncStorage.getItem('lastCompletedTaskTime');
-        if (storedTime) {
-          setLastCompletedTaskTime(JSON.parse(storedTime));
-        }
-      } catch (error) {
-        console.error('Error loading lastCompletedTaskTime:', error);
-      }
-    };
-    loadLastTaskTime();
-  }, []);
-
-  useEffect(() => {
-    const now = new Date();
-    const nextMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-    const msUntilMidnight = nextMidnight.getTime() - now.getTime();
-    const timer = setTimeout(() => {
-      setLastCompletedTaskTime(null);
-    }, msUntilMidnight);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    const loadUserRewards = async () => {
-      try {
-        const storedUserRewards = await AsyncStorage.getItem('userRewards');
-
-        if (storedUserRewards !== null) {
-          setUserRewards(JSON.parse(storedUserRewards));
-        } else {
-          await AsyncStorage.setItem('userRewards', JSON.stringify([]));
-          setUserRewards([]);
-        }
-
-        const storedAwailableRewards = await AsyncStorage.getItem('notAvailableRewards');
-
-        if (storedAwailableRewards !== null) {
-          setNotAvailableRewards(JSON.parse(storedAwailableRewards));
-        } else {
-          await AsyncStorage.setItem('notAvailableRewards', JSON.stringify([]));
-          setNotAvailableRewards([]);
-        }
-
-        const storedCurrentReward = await AsyncStorage.getItem('currentReward');
-        if (storedCurrentReward !== null) {
-          setCurrentReward(JSON.parse(storedCurrentReward));
-        }
-
-        const storedLevelPoints = await AsyncStorage.getItem('levelPoints');
-        if (storedLevelPoints !== null) {
-          setLevelPoints(JSON.parse(storedLevelPoints));
-        }
-      } catch (error) {
-        console.error('Error loading userRewards:', error);
-      }
-    };
-    loadUserRewards();
-  }, []);
-
-  useEffect(() => {
-    const loadCurrentChallenge = async () => {
-      try {
-        const storedChallenge = await AsyncStorage.getItem('sweetTasks');
-        if (storedChallenge) {
-          setSweetTasks(JSON.parse(storedChallenge));
-        }
-      } catch (error) {
-        console.error('Error loading sweetTasks:', error);
-      }
-    };
-
-    loadCurrentChallenge();
-
-  }, [choosedSweetScreen]);
-
-  const updateTaskStatus = async (index) => {
-    if (typeof isSweetVibrOn !== 'undefined' && isSweetVibrOn) {
-      ReactNativeHapticFeedback.trigger("impactLight", {
-        enableVibrateFallback: true,
-        ignoreAndroidSystemSettings: false,
-      });
+  const getDataByCategory = (category) => {
+    switch (category) {
+      case 'Castles and Fortresses':
+        return castlesData;
+      case 'Churches and Monasteries':
+        return churchesData;
+      case 'Palaces and Residences':
+        return residencesData;
+      default:
+        return castlesData;
     }
-
-    const updatedSweetTasks = [...sweetTasks.tasks];
-
-    if (updatedSweetTasks[index].status === 'in progress') {
-      updatedSweetTasks[index].status = 'done';
-      updatedSweetTasks[index].endTime = new Date().toISOString();
-    }
-    else if (updatedSweetTasks[index].status === 'pending') {
-      updatedSweetTasks[index].status = 'in progress';
-      updatedSweetTasks[index].startTime = new Date().toISOString();
-    }
-
-    const updatedThisSweetTask = {
-      ...sweetTasks,
-      tasks: updatedSweetTasks,
-    };
-
-    setSweetTasks(updatedThisSweetTask);
-    await saveThisSweetTask(updatedThisSweetTask);
-
-    if (updatedSweetTasks.every(swTask => swTask.status === 'done')) {
-      const updatedLevelPoints = levelPoints + 1;
-      setLevelPoints(updatedLevelPoints);
-      await AsyncStorage.setItem('levelPoints', JSON.stringify(updatedLevelPoints));
-      generateSweetReward();
-      setIsTasksVisible(false);
-      try {
-        const updatedSweetTasksHere = {
-          tasks: updatedSweetTasks,
-          allCompletedDate: new Date().toISOString(),
-        };
-        await AsyncStorage.setItem('sweetTasks', JSON.stringify(updatedSweetTasksHere));
-      } catch (error) {
-        console.error('Error saving to sweetTasks:', error);
-      }
-    }
-  };
-
-  const checkTaskAvailable = (completedTimeStr) => {
-    if (!completedTimeStr) return true;
-    const completedTime = new Date(completedTimeStr);
-    const nextAvailable = new Date(
-      completedTime.getFullYear(),
-      completedTime.getMonth(),
-      completedTime.getDate() + 1,
-      0, 0, 0
-    );
-    return new Date() >= nextAvailable;
-  };
-
-  useEffect(() => {
-    setIsSweetTaskAvailable(checkTaskAvailable(lastCompletedTaskTime));
-  }, [lastCompletedTaskTime]);
-
-  const generateSweetReward = async () => {
-    let candidateRewards = sweetRewards.filter(reward => {
-      return !notAvailableRewards.some(avReward => avReward.id === reward.id);
-    });
-
-    if (candidateRewards.length === 0) {
-      candidateRewards = [...sweetRewards];
-    }
-
-    if (notAvailableRewards.length >= 20) {
-      try {
-        await AsyncStorage.setItem('notAvailableRewards', JSON.stringify([]));
-        setNotAvailableRewards([]);
-      } catch (error) {
-        console.error('Error clearing notAvailableRewards:', error);
-      }
-    }
-
-    const newReward = candidateRewards[Math.floor(Math.random() * candidateRewards.length)];
-
-    const updatedRewards = [...notAvailableRewards, newReward];
-    setNotAvailableRewards(updatedRewards);
-
-    const newUserNewReward = {
-      ...newReward,
-      receivedDate: new Date().toISOString()
-    }
-    const updatedUserRewards = [...userRewards, newUserNewReward];
-    setUserRewards(updatedUserRewards);
-    await AsyncStorage.setItem('userRewards', JSON.stringify(updatedUserRewards));
-
-    setCurrentReward(newReward);
-    await AsyncStorage.setItem('currentReward', JSON.stringify(newReward));
-
-    try {
-      await AsyncStorage.setItem('notAvailableRewards', JSON.stringify(updatedRewards));
-    } catch (error) {
-      console.error('Error saving notAvailableRewards:', error);
-    }
-  };
-
-  const saveThisSweetTask = async (swTask) => {
-    try {
-      await AsyncStorage.setItem('sweetTasks', JSON.stringify(swTask));
-    } catch (error) {
-      console.error('Error saving sweetTasks:', error);
-    }
-  };
-
-  const generateSweetTasks = async () => {
-    const availableTasks = [...sweetTasksData];
-    for (let i = availableTasks.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [availableTasks[i], availableTasks[j]] = [availableTasks[j], availableTasks[i]];
-    }
-    const selectedTasks = availableTasks.slice(0, 3).map(task => ({
-      ...task,
-      status: 'pending'
-    }));
-    const data = { tasks: selectedTasks, allCompletedDate: null };
-    try {
-      await AsyncStorage.setItem('sweetTasks', JSON.stringify(data));
-    } catch (error) {
-      console.error('Error saving sweetTasks:', error);
-    }
-    setSweetTasks(data);
-    return data;
   }
 
+  const unveilingBuildingsData = getDataByCategory(selectedBuildingsCategory);
+
+  const [selectedUnveilingBuilding, setSelectedUnveilingBuilding] = useState(unveilingBuildingsData[0]);
+
   const styles = unveilingMainStyles(dimensions);
-
-
-  useEffect(() => {
-    const loadSweetSetsOfApp = async () => {
-      try {
-        const sweetMusicFromStorage = await AsyncStorage.getItem('isSweetMusicOn');
-
-        const sweetVibrationFromStorage = await AsyncStorage.getItem('isSweetVibrationOn');
-
-        const sweetNotificationsFromStorage = await AsyncStorage.getItem('isSweetNotificationsOn');
-
-        if (sweetMusicFromStorage !== null) {
-          setSweetMusicOn(JSON.parse(sweetMusicFromStorage));
-        }
-
-        if (sweetVibrationFromStorage !== null) {
-          setSweetVibrOn(JSON.parse(sweetVibrationFromStorage));
-        }
-
-        if (sweetNotificationsFromStorage !== null) {
-          setSweetNotificationsOn(JSON.parse(sweetNotificationsFromStorage));
-        }
-      } catch (error) {
-        console.error('Error loading sweet setts of the app', error);
-      }
-    };
-
-    loadSweetSetsOfApp();
-  }, [])
-
-  const getLevelInfo = (levelPoints) => {
-    if (levelPoints < 1) {
-      return { level: levels[0], start: 0, end: 10, progress: 0 };
-    } else if (levelPoints <= 10) {
-      return { level: levels[0], start: 1, end: 10, progress: levelPoints / 10 };
-    } else if (levelPoints <= 20) {
-      return { level: levels[1], start: 11, end: 20, progress: (levelPoints - 10) / 10 };
-    } else if (levelPoints <= 30) {
-      return { level: levels[2], start: 21, end: 30, progress: (levelPoints - 20) / 10 };
-    } else if (levelPoints <= 40) {
-      return { level: levels[3], start: 31, end: 40, progress: (levelPoints - 30) / 10 };
-    } else if (levelPoints < 50) {
-      return { level: levels[4], start: 41, end: 50, progress: (levelPoints - 40) / 10 };
-    } else {
-      return { level: levels[4], start: 41, end: 50, progress: 1 };
-    }
-  };
-
-  const levelInfo = getLevelInfo(levelPoints);
-
-  const isToday = (dateStr) => {
-    if (!dateStr) return false;
-    const date = new Date(dateStr);
-    const today = new Date();
-    return (
-      date.getDate() === today.getDate() &&
-      date.getMonth() === today.getMonth() &&
-      date.getFullYear() === today.getFullYear()
-    );
-  };
 
   return (
     <View style={{
@@ -389,7 +84,7 @@ const UnveilingHomeScreen = () => {
       height: dimensions.height,
       backgroundColor: '#04050E',
     }}>
-      {choosedSweetScreen === 'Home' ? (
+      {unveilingScreenNow === 'Home' ? (
         <SafeAreaView style={{
           flex: 1,
           alignItems: 'center',
@@ -406,7 +101,7 @@ const UnveilingHomeScreen = () => {
               marginTop: dimensions.height * 0.01,
             }}
             onPress={() => {
-              setChoosedSweetScreen('Home');
+              setUnveilingScreenNow('Home');
             }}
           >
             <Text style={{
@@ -417,7 +112,11 @@ const UnveilingHomeScreen = () => {
               Castles and Fortresses
             </Text>
 
-            <ChevronRightIcon color='white' size={dimensions.height * 0.03} />
+            <TouchableOpacity onPress={() => {
+              setSelectedBuildingsCategory(selectedBuildingsCategory === 'Castles and Fortresses' ? 'Churches and Monasteries' : selectedBuildingsCategory === 'Churches and Monasteries' ? 'Palaces and Residences' : 'Castles and Fortresses');
+            }}>
+              <ChevronRightIcon color='white' size={dimensions.height * 0.03} />
+            </TouchableOpacity>
           </TouchableOpacity>
 
           <View style={{
@@ -428,18 +127,27 @@ const UnveilingHomeScreen = () => {
               marginTop: dimensions.height * 0.03
             }}
             >
-              {[1, 2, 3].map((category, index) => (
+              {unveilingBuildingsData.map((building, index) => (
                 <TouchableOpacity
+                  key={index}
                   activeOpacity={0.7}
-                style={{
-                  height: dimensions.height * 0.08,
-                  justifyContent: 'space-between',
-                  paddingHorizontal: dimensions.width * 0.02,
-                  borderRadius: dimensions.width * 0.1,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  marginLeft: dimensions.width * 0.05,
-                }}>
+                  style={{
+                    height: dimensions.height * 0.08,
+                    justifyContent: 'space-between',
+                    paddingHorizontal: dimensions.width * 0.02,
+                    borderRadius: dimensions.width * 0.1,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    marginLeft: dimensions.width * 0.05,
+                  }}
+                  onPress={() => {
+                    setSelectedUnveilingBuilding(building);
+                    ReactNativeHapticFeedback.trigger("impactLight", {
+                      enableVibrateFallback: true,
+                      ignoreAndroidSystemSettings: false,
+                    });
+                  }}
+                >
                   <LinearGradient
                     style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, borderRadius: dimensions.width * 0.1 }}
                     colors={['#454545', '#848484']}
@@ -448,7 +156,7 @@ const UnveilingHomeScreen = () => {
                   />
 
                   <Image
-                    source={require('../assets/images/image1.png')}
+                    source={building.buildingImage}
                     style={{
                       width: dimensions.height * 0.06,
                       height: dimensions.height * 0.06,
@@ -468,7 +176,7 @@ const UnveilingHomeScreen = () => {
                     }}
                     numberOfLines={2}
                   >
-                    Neuschwanstein Castle
+                    {building.buildingName}
                   </Text>
                 </TouchableOpacity>
               ))}
@@ -481,7 +189,7 @@ const UnveilingHomeScreen = () => {
             height: dimensions.height * 0.55,
           }}>
             <Image
-              source={require('../assets/images/image1.png')}
+              source={selectedUnveilingBuilding?.buildingImage}
               style={{
                 width: dimensions.width * 0.91,
                 height: dimensions.height * 0.55,
@@ -492,60 +200,57 @@ const UnveilingHomeScreen = () => {
               resizeMode="cover"
             />
 
-            <View style={{
-              width: dimensions.width * 0.85,
-              paddingHorizontal: dimensions.width * 0.04,
-              paddingVertical: dimensions.height * 0.03,
-              borderRadius: dimensions.width * 0.05,
-              backgroundColor: 'black',
-              alignSelf: 'center',
+
+
+            <TouchableOpacity style={{
               position: 'absolute',
-              bottom: dimensions.height * 0.02,
-            }}>
-              <Text
+              top: dimensions.height * 0.03,
+              right: dimensions.width * 0.07,
+            }}
+              onPress={() => {
+                setIsFullScreenImage(!isFullScreenImage);
+                ReactNativeHapticFeedback.trigger("impactLight", {
+                  enableVibrateFallback: true,
+                  ignoreAndroidSystemSettings: false,
+                });
+              }}
+            >
+              <Image
+                source={!isFullScreenImage
+                  ? require('../assets/icons/toFullIcon.png')
+                  : require('../assets/icons/toSmallIcon.png')
+                }
                 style={{
-                  color: 'white',
-                  textAlign: 'left',
-                  fontSize: dimensions.width * 0.0555,
-                  fontWeight: '700',
+                  width: dimensions.height * 0.04,
+                  height: dimensions.height * 0.04,
+                  zIndex: 1,
                 }}
-              >
-                Neuschwanstein Castle
-              </Text>
+                resizeMode="contain"
+              />
+            </TouchableOpacity>
 
-              <Text
-                style={{
-                  color: 'white',
-                  textAlign: 'left',
-                  fontSize: dimensions.width * 0.04,
-                  fontWeight: '700',
-
-                  marginTop: dimensions.height * 0.01,
-                }}
-              >
-                📖 Description:
-              </Text>
-
-              <Text
-                style={{
-                  color: 'white',
-                  textAlign: 'left',
-                  fontSize: dimensions.width * 0.034,
-                  fontWeight: '400',
-
-                  marginTop: dimensions.height * 0.01,
-                  fontStyle: 'italic',
-                }}
-              >
-                This fairy-tale castle, built in the 19th century, is one of the most famous in the world. Neuschwanstein Castle inspired the creation of Sleeping Beauty’s Castle at Disneyland. Visitors can learn about the life of King Ludwig II and his dreams.
-              </Text>
-
+            {!isFullScreenImage && (
               <View style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                alignSelf: 'flex-start',
+                width: dimensions.width * 0.85,
+                paddingHorizontal: dimensions.width * 0.04,
+                paddingVertical: dimensions.height * 0.03,
+                borderRadius: dimensions.width * 0.05,
+                backgroundColor: 'black',
+                alignSelf: 'center',
+                position: 'absolute',
+                bottom: dimensions.height * 0.02,
               }}>
+                <Text
+                  style={{
+                    color: 'white',
+                    textAlign: 'left',
+                    fontSize: dimensions.width * 0.0555,
+                    fontWeight: '700',
+                  }}
+                >
+                  {selectedUnveilingBuilding?.buildingName}
+                </Text>
+
                 <Text
                   style={{
                     color: 'white',
@@ -556,7 +261,7 @@ const UnveilingHomeScreen = () => {
                     marginTop: dimensions.height * 0.01,
                   }}
                 >
-                  📍 Location: {' '}
+                  📖 Description:
                 </Text>
 
                 <Text
@@ -570,30 +275,56 @@ const UnveilingHomeScreen = () => {
                     fontStyle: 'italic',
                   }}
                 >
-                  Füssen, Southern Bavaria.
+                  {selectedUnveilingBuilding?.buildingDescription}
                 </Text>
+
+                <View style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  alignSelf: 'flex-start',
+                }}>
+                  <Text
+                    style={{
+                      color: 'white',
+                      textAlign: 'left',
+                      fontSize: dimensions.width * 0.04,
+                      fontWeight: '700',
+
+                      marginTop: dimensions.height * 0.01,
+                    }}
+                  >
+                    📍 Location: {' '}
+                  </Text>
+
+                  <Text
+                    style={{
+                      color: 'white',
+                      textAlign: 'left',
+                      fontSize: dimensions.width * 0.034,
+                      fontWeight: '400',
+
+                      marginTop: dimensions.height * 0.01,
+                      fontStyle: 'italic',
+                    }}
+                  >
+                    {selectedUnveilingBuilding?.buildingLocation}
+                  </Text>
+                </View>
               </View>
-            </View>
+            )}
           </View>
 
 
         </SafeAreaView>
-      ) : choosedSweetScreen === 'Settings' ? (
-        <SweetSettingsScreen setChoosedSweetScreen={setChoosedSweetScreen}
-
-          isSweetMusicOn={isSweetMusicOn}
-          setSweetMusicOn={setSweetMusicOn}
-          isSweetNotificationsOn={isSweetNotificationsOn}
-          setSweetNotificationsOn={setSweetNotificationsOn}
-          isSweetVibrOn={isSweetVibrOn}
-          setSweetVibrOn={setSweetVibrOn}
-        />
-      ) : choosedSweetScreen === 'Bayern landmarks' ? (
-        <UnveilingBayernLandmarksScreen setChoosedSweetScreen={setChoosedSweetScreen} levelPoints={levelPoints} />
-      ) : choosedSweetScreen === 'Saved' ? (
-        <SweetSavedScreen setChoosedSweetScreen={setChoosedSweetScreen} sweetFavTasks={sweetFavTasks} setSweetFavTasks={setSweetFavTasks} />
-      ) : choosedSweetScreen === 'My rewards' ? (
-        <SweetMyRewardsScreen setChoosedSweetScreen={setChoosedSweetScreen} userRewards={userRewards} />
+      ) : unveilingScreenNow === 'Settings' ? (
+        <SweetSettingsScreen setUnveilingScreenNow={setUnveilingScreenNow}/>
+      ) : unveilingScreenNow === 'Bayern landmarks' ? (
+        <UnveilingBayernLandmarksScreen setUnveilingScreenNow={setUnveilingScreenNow}  />
+      ) : unveilingScreenNow === 'Saved' ? (
+        <SweetSavedScreen setUnveilingScreenNow={setUnveilingScreenNow}  />
+      ) : unveilingScreenNow === 'My rewards' ? (
+        <SweetMyRewardsScreen setUnveilingScreenNow={setUnveilingScreenNow}  />
       ) : null}
 
       <View style={{
@@ -613,7 +344,7 @@ const UnveilingHomeScreen = () => {
           <TouchableOpacity
             key={index}
             onPress={() => {
-              setChoosedSweetScreen(sweetBtEdge.sweetScPage);
+              setUnveilingScreenNow(sweetBtEdge.sweetScPage);
             }}
             style={{
               borderColor: '#DAA1C1',
@@ -625,7 +356,7 @@ const UnveilingHomeScreen = () => {
               source={sweetBtEdge.sweetScPageImg}
               style={{
                 height: dimensions.height * 0.035,
-                opacity: choosedSweetScreen === sweetBtEdge.sweetScPage ? 1 : 0.4,
+                opacity: unveilingScreenNow === sweetBtEdge.sweetScPage ? 1 : 0.4,
                 width: dimensions.height * 0.035,
               }}
               resizeMode="contain"
