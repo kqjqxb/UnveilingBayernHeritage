@@ -155,16 +155,34 @@ const UnveilingHomeScreen = () => {
                     end={{ x: 0.5, y: 0 }}
                   />
 
-                  <Image
-                    source={building.buildingImage}
-                    style={{
-                      width: dimensions.height * 0.06,
-                      height: dimensions.height * 0.06,
-                      borderRadius: dimensions.width * 0.1,
-                      zIndex: 1,
-                    }}
-                    resizeMode="cover"
-                  />
+                  <View>
+                    <Image
+                      source={building.buildingImage}
+                      style={{
+                        width: dimensions.height * 0.06,
+                        height: dimensions.height * 0.06,
+                        borderRadius: dimensions.width * 0.1,
+                        zIndex: 1,
+                      }}
+                      resizeMode="cover"
+                    />
+
+                    <Image
+                      source={selectedUnveilingBuilding === building 
+                        ? require('../assets/icons/selectedBuildingIcon.png')
+                        : require('../assets/icons/notSelectedBuildingIcon.png')
+                      }
+                      style={{
+                        width: dimensions.height * 0.03,
+                        height: dimensions.height * 0.03,
+                        zIndex: 2,
+                        position: 'absolute',
+                        right: -dimensions.width * 0.013,
+                        bottom: -dimensions.height * 0.004,
+                      }}
+                      resizeMode="cover"
+                    />
+                  </View>
 
                   <Text
                     style={{
@@ -318,13 +336,13 @@ const UnveilingHomeScreen = () => {
 
         </SafeAreaView>
       ) : unveilingScreenNow === 'Settings' ? (
-        <SweetSettingsScreen setUnveilingScreenNow={setUnveilingScreenNow}/>
+        <SweetSettingsScreen setUnveilingScreenNow={setUnveilingScreenNow} />
       ) : unveilingScreenNow === 'Bayern landmarks' ? (
-        <UnveilingBayernLandmarksScreen setUnveilingScreenNow={setUnveilingScreenNow}  />
+        <UnveilingBayernLandmarksScreen setUnveilingScreenNow={setUnveilingScreenNow} />
       ) : unveilingScreenNow === 'Saved' ? (
-        <SweetSavedScreen setUnveilingScreenNow={setUnveilingScreenNow}  />
+        <SweetSavedScreen setUnveilingScreenNow={setUnveilingScreenNow} />
       ) : unveilingScreenNow === 'My rewards' ? (
-        <SweetMyRewardsScreen setUnveilingScreenNow={setUnveilingScreenNow}  />
+        <SweetMyRewardsScreen setUnveilingScreenNow={setUnveilingScreenNow} />
       ) : null}
 
       <View style={{
