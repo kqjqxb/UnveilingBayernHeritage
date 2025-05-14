@@ -12,7 +12,7 @@ import { ChevronRightIcon } from 'react-native-heroicons/solid';
 import citiesData from '../components/citiesData';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import LinearGradient from 'react-native-linear-gradient';
-import Clipboard from '@react-native-clipboard/clipboard'; // <-- new import
+import Clipboard from '@react-native-clipboard/clipboard'; 
 
 const UnveilingPlanScreen = ({ setUnveilingScreenNow }) => {
     const dimensions = Dimensions.get('window');
@@ -23,7 +23,6 @@ const UnveilingPlanScreen = ({ setUnveilingScreenNow }) => {
     const [selectedUnvCity, setSelectedUnveilingCity] = useState(null);
     const [selectedUnvPlace, setSelectedUnveilingPlace] = useState(null);
     
-    // Animated value for the copy alert
     const copiedAlertOpacity = useRef(new Animated.Value(0)).current;
 
     return (
@@ -356,7 +355,6 @@ const UnveilingPlanScreen = ({ setUnveilingScreenNow }) => {
                 </>
             )}
 
-            {/* Animated alert that shows when address is copied */}
             <Animated.View style={{
                 position: 'absolute',
                 top: dimensions.height * 0.35,

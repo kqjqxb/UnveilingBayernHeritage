@@ -24,6 +24,7 @@ import castlesData from '../components/castlesData';
 import residencesData from '../components/residencesData';
 import churchesData from '../components/churchesData';
 import UnveilingPlanScreen from './UnveilingPlanScreen';
+import UnveilingBayernSettingsScreen from './UnveilingBayernSettingsScreen';
 
 const unvBottomButtons = [
   {
@@ -44,12 +45,12 @@ const unvBottomButtons = [
   {
     id: 5,
     sweetScPage: 'Bayern landmarks',
-    sweetScPageImg: require('../assets/icons/homeBottomUnvIcons/unvPlanTripIcon.png'),
+    sweetScPageImg: require('../assets/icons/homeBottomUnvIcons/unvLandmarksIcon.png'),
   },
   {
     id: 3,
-    sweetScPage: 'My rewards',
-    sweetScPageImg: require('../assets/icons/homeBottomUnvIcons/unvLandmarksIcon.png'),
+    sweetScPage: 'Unveiling Settings',
+    sweetScPageImg: require('../assets/icons/homeBottomUnvIcons/unvPlanTripIcon.png'),
   },
 ]
 
@@ -75,6 +76,10 @@ const UnveilingHomeScreen = () => {
   const unveilingBuildingsData = getDataByCategory(selectedBuildingsCategory);
 
   const [selectedUnveilingBuilding, setSelectedUnveilingBuilding] = useState(unveilingBuildingsData[0]);
+
+  useEffect(() => {
+    setSelectedUnveilingBuilding(unveilingBuildingsData[0]);
+  }, [selectedBuildingsCategory]);
 
   const styles = unveilingMainStyles(dimensions);
 
@@ -110,7 +115,7 @@ const UnveilingHomeScreen = () => {
               fontWeight: '700',
               color: 'white'
             }}>
-              Castles and Fortresses
+              {selectedBuildingsCategory}
             </Text>
 
             <TouchableOpacity onPress={() => {
@@ -342,8 +347,8 @@ const UnveilingHomeScreen = () => {
         <UnveilingBayernLandmarksScreen setUnveilingScreenNow={setUnveilingScreenNow} />
       ) : unveilingScreenNow === 'Plan Bayern Trip' ? (
         <UnveilingPlanScreen setUnveilingScreenNow={setUnveilingScreenNow} />
-      ) : unveilingScreenNow === 'My rewards' ? (
-        <SweetMyRewardsScreen setUnveilingScreenNow={setUnveilingScreenNow} />
+      ) : unveilingScreenNow === 'Unveiling Settings' ? (
+        <UnveilingBayernSettingsScreen setUnveilingScreenNow={setUnveilingScreenNow} />
       ) : null}
 
       <View style={{
