@@ -210,7 +210,7 @@ const UnveilingHomeScreen = () => {
               width: dimensions.width * 0.91,
               height: dimensions.height * 0.55,
               borderRadius: dimensions.width * 0.1,
-              overflow: 'hidden',  // this clips the zoomed image inside the container
+              overflow: 'hidden', 
               position: 'relative',
             }}
           >
