@@ -172,7 +172,7 @@ const UnveilingHomeScreen = () => {
                     />
 
                     <Image
-                      source={selectedUnveilingBuilding === building 
+                      source={selectedUnveilingBuilding === building
                         ? require('../assets/icons/selectedBuildingIcon.png')
                         : require('../assets/icons/notSelectedBuildingIcon.png')
                       }
@@ -205,11 +205,15 @@ const UnveilingHomeScreen = () => {
             </ScrollView>
           </View>
 
-          <View style={{
-            alignSelf: 'center',
-            width: dimensions.width * 0.91,
-            height: dimensions.height * 0.55,
-          }}>
+          <View
+            style={{
+              width: dimensions.width * 0.91,
+              height: dimensions.height * 0.55,
+              borderRadius: dimensions.width * 0.1,
+              overflow: 'hidden',  // this clips the zoomed image inside the container
+              position: 'relative',
+            }}
+          >
             <Image
               source={selectedUnveilingBuilding?.buildingImage}
               style={{
@@ -218,6 +222,7 @@ const UnveilingHomeScreen = () => {
                 borderRadius: dimensions.width * 0.1,
                 position: 'absolute',
                 zIndex: 0,
+                transform: isFullScreenImage ? [{ scale: 1.1 }] : [{ scale: 1 }],
               }}
               resizeMode="cover"
             />
