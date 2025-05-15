@@ -105,13 +105,6 @@ const UnveilingBayernSettingsScreen = ({ setUnveilingScreenNow }) => {
 };
 
 const styles = {
-    settingItem: (dimensions) => ({
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: dimensions.width * 0.04,
-        borderRadius: dimensions.width * 0.05,
-    }),
     settingText: (dimensions) => ({
         color: 'white',
         fontSize: dimensions.width * 0.05,

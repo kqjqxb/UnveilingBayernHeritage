@@ -1,8 +1,8 @@
 import React from 'react';
-import SweetEdgeStack from './StackNavigator';
+import CastleDefenderStack from './StackNavigator';
 
 function App() {
-  return <SweetEdgeStack />;
+  return <CastleDefenderStack />;
 }
 
 export default App;

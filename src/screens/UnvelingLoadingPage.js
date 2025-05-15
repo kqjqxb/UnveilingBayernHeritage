@@ -43,43 +43,44 @@ const UnvelingLoadingPage = () => {
   }, [opacityValues]);
 
   useEffect(() => {
-    const sweetLoadUser = async () => {
+    dispatch(loadUserData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    const unvHerritageLoadingOfUser = async () => {
       try {
         const deviceId = await DeviceInfo.getUniqueId();
         const storageKey = `currentUser_${deviceId}`;
-        const isSweetOnbWas = await AsyncStorage.getItem('isSweetOnbWas');
-        const sweetStoredUser = await AsyncStorage.getItem(storageKey);
+        const isHerritagePresentOnb = await AsyncStorage.getItem('isHerritagePresentOnb');
+        const herritageStoredUserAs = await AsyncStorage.getItem(storageKey);
 
-        if (sweetStoredUser) {
-          setUser(JSON.parse(sweetStoredUser));
+        if (herritageStoredUserAs) {
+          setUser(JSON.parse(herritageStoredUserAs));
           setAppWasOpened(false);
-        } else if (isSweetOnbWas) {
-          setAppWasOpened(false);
-        } else {
+        } else if (isHerritagePresentOnb) setAppWasOpened(false);
+         else {
           setAppWasOpened(true);
-          await AsyncStorage.setItem('isSweetOnbWas', 'true');
+          await AsyncStorage.setItem('isHerritagePresentOnb', 'true');
         }
       } catch (error) {
-        console.error('Loading math user has problem', error);
+        console.error('Loading herritage was with some problems:', error);
       } finally {
         setLoadingUnveilingBefore(true);
       }
     };
 
-    sweetLoadUser();
+    unvHerritageLoadingOfUser();
   }, [setUser]);
 
   useEffect(() => {
-    dispatch(loadUserData());
-  }, [dispatch]);
-
-  useEffect(() => {
     if (isLoadingUnveilingBefore) {
-      const sweetTimer = setTimeout(() => {
-        const destination = isAppWasOpened ? 'OnbOfTheUnveiling' : 'UnveilingHomeScreen';
-        navigation.replace(destination);
+      const custleDefenderTimer = setTimeout(() => {
+
+        const custleDestination = isAppWasOpened ? 'OnbOfTheUnveiling' : 'UnveilingHomeScreen';
+
+        navigation.replace(custleDestination);
       }, 5555);
-      return () => clearTimeout(sweetTimer);
+      return () => clearTimeout(custleDefenderTimer);
     }
   }, [isLoadingUnveilingBefore, isAppWasOpened, navigation]);
 
@@ -100,10 +101,10 @@ const UnvelingLoadingPage = () => {
     <SafeAreaView
       style={{
         alignItems: 'center',
-        height: '100%',
         backgroundColor: '#04050E',
-        width: '100%',
+        height: '100%',
         alignSelf: 'center',
+        width: '100%',
       }}
     >
       <View

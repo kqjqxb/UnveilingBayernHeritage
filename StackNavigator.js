@@ -12,7 +12,7 @@ import OnboardingOfTheUnveilingScreen from './src/screens/OnboardingOfTheUnveili
 
 const Stack = createNativeStackNavigator();
 
-const SweetEdgeStack = () => {
+const CastleDefenderStack = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Provider store={store}>
@@ -39,4 +39,4 @@ const AppNavigator = () => {
 };
 
 
-export default SweetEdgeStack;
+export default CastleDefenderStack;

@@ -11,11 +11,8 @@ import {
   ScrollView,
   Share,
 } from 'react-native';
-import SweetSettingsScreen from './SweetSettingsScreen';
 
 import UnveilingBayernLandmarksScreen from './UnveilingBayernLandmarksScreen';
-import SweetSavedScreen from './SweetSavedScreen';
-import SweetMyRewardsScreen from './SweetMyRewardsScreen';
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import { ChevronRightIcon } from 'react-native-heroicons/solid';
 import LinearGradient from 'react-native-linear-gradient';
@@ -30,28 +27,28 @@ import UnveilingCastleDefenderScreen from './UnveilingCastleDefenderScreen';
 const unvBottomButtons = [
   {
     id: 2,
-    sweetScPage: 'Castle Defender',
-    sweetScPageImg: require('../assets/icons/homeBottomUnvIcons/unvDefenderIcon.png'),
+    custleDefenderScreenNT: 'Castle Defender',
+    custleDefenderImage: require('../assets/icons/homeBottomUnvIcons/unvDefenderIcon.png'),
   },
   {
     id: 4,
-    sweetScPage: 'Plan Bayern Trip',
-    sweetScPageImg: require('../assets/icons/homeBottomUnvIcons/unvFestivalsIcon.png'),
+    custleDefenderScreenNT: 'Plan Bayern Trip',
+    custleDefenderImage: require('../assets/icons/homeBottomUnvIcons/unvFestivalsIcon.png'),
   },
   {
     id: 1,
-    sweetScPage: 'Home',
-    sweetScPageImg: require('../assets/icons/homeBottomUnvIcons/unvHomeIcon.png'),
+    custleDefenderScreenNT: 'Home',
+    custleDefenderImage: require('../assets/icons/homeBottomUnvIcons/unvHomeIcon.png'),
   },
   {
     id: 5,
-    sweetScPage: 'Bayern landmarks',
-    sweetScPageImg: require('../assets/icons/homeBottomUnvIcons/unvLandmarksIcon.png'),
+    custleDefenderScreenNT: 'Bayern landmarks',
+    custleDefenderImage: require('../assets/icons/homeBottomUnvIcons/unvLandmarksIcon.png'),
   },
   {
     id: 3,
-    sweetScPage: 'Unveiling Settings',
-    sweetScPageImg: require('../assets/icons/homeBottomUnvIcons/unvPlanTripIcon.png'),
+    custleDefenderScreenNT: 'Unveiling Settings',
+    custleDefenderImage: require('../assets/icons/homeBottomUnvIcons/unvPlanTripIcon.png'),
   },
 ]
 
@@ -365,30 +362,27 @@ const UnveilingHomeScreen = () => {
         alignItems: 'center',
         borderRadius: dimensions.width * 0.035,
       }}>
-        {unvBottomButtons.map((sweetBtEdge, index) => (
+        {unvBottomButtons.map((custleDefenderButtonForPages, index) => (
           <TouchableOpacity
             key={index}
             onPress={() => {
-              setUnveilingScreenNow(sweetBtEdge.sweetScPage);
+              setUnveilingScreenNow(custleDefenderButtonForPages.custleDefenderScreenNT);
             }}
             style={{
-              borderColor: '#DAA1C1',
-              alignItems: 'center',
-              borderRadius: dimensions.width * 0.031,
               justifyContent: 'center',
+              alignItems: 'center',
             }}>
             <Image
-              source={sweetBtEdge.sweetScPageImg}
+              source={custleDefenderButtonForPages.custleDefenderImage}
               style={{
                 height: dimensions.height * 0.035,
-                opacity: unveilingScreenNow === sweetBtEdge.sweetScPage ? 1 : 0.4,
+                opacity: unveilingScreenNow === custleDefenderButtonForPages.custleDefenderScreenNT ? 1 : 0.4,
                 width: dimensions.height * 0.035,
               }}
               resizeMode="contain"
             />
           </TouchableOpacity>
         ))}
-
       </View>
     </View>
   );
